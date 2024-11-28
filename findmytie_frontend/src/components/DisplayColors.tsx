@@ -30,7 +30,22 @@ function DisplayColors() {
   }
 
   function onSearchClick() {
-    console.log(colors);
+    var response = null;
+    try {
+      response = fetch("http://127.0.0.1:8000/api/create-search-query", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({'colors': colors})
+      });
+    } catch (err: any) {
+      console.log("Error: ", err);
+    } finally {
+    }
+
+    console.log("Search Clicked");
+    console.log(response);
   }
 
   return (

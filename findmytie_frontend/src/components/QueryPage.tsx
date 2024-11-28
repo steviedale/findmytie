@@ -3,6 +3,7 @@ import ReferenceImageArea from "./ReferenceImageArea";
 
 
 function QueryPage() {
+
   return (
     <div>
       <DisplayColors />
