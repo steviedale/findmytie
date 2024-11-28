@@ -29,6 +29,10 @@ function DisplayColors() {
     setColors([...colors, "#ffffff"]);
   }
 
+  function onSearchClick() {
+    console.log(colors);
+  }
+
   return (
     <div className="container">
       <div className="row">
@@ -66,6 +70,9 @@ function DisplayColors() {
           onCloseUpstream={() => setSelectedColor(-1)}
         />
       )}
+      <button className="btn btn-primary" onClick={onSearchClick}> 
+        Search
+      </button>
     </div>
   );
 }

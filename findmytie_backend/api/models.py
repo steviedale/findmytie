@@ -15,8 +15,15 @@ def generate_unique_code():
 # Create your models here.
 class SearchQuery(models.Model):
     code = models.CharField(max_length=50, unique=True, default=generate_unique_code)
-    color_1 = models.CharField(max_length=10, default="")
-    color_2 = models.CharField(max_length=10, default="")
-    color_3 = models.CharField(max_length=10, default="")
-    host = models.CharField(max_length=50, unique=True)
+    colors = models.CharField(max_length=1000, default='')
+    host = models.CharField(max_length=50, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Listing(models.Model):
+    search_query = models.ForeignKey(SearchQuery, on_delete=models.CASCADE)
+    title = models.CharField(max_length=1000, default='')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    url = models.URLField()
+    image = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
