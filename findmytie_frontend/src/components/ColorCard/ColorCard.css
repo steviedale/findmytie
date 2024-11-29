@@ -1,0 +1,43 @@
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+input::-webkit-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
+input::-moz-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
+input::-webkit-color-swatch:hover {
+    border: 1px solid black;
+    border-width: 1px;
+}
+
+input::-moz-color-swatch:hover {
+    border: 1px solid black;
+    border-width: 1px;
+}
+
+.overlay-button {
+    position: relative;
+    top: -76px;
+    left: 30px;
+    z-index: 1; /* Ensure the button is on top */
+}
+
+#color-container {
+    display: inline-block;
+    vertical-align: -webkit-baseline-middle;
+    margin: 10px;
+}

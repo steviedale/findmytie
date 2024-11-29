@@ -1,0 +1,20 @@
+/* TODO: we need to share settings with ColorCard (width, height, border-radius) */
+#add-button {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    color: grey;
+    border-color: grey;
+    border-width: 1.5px;
+    border-radius: 15px;
+    cursor: pointer;
+    vertical-align: -webkit-baseline-middle;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+}
+
+#add-button:hover {
+    color: black;
+    border-color: black;
+}
