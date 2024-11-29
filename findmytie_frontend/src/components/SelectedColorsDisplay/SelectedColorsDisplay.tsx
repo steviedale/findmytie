@@ -3,26 +3,34 @@ import ColorCard from "../ColorCard/ColorCard";
 import AddIcon from "@mui/icons-material/Add";
 import "./SelectedColorsDisplay.css";
 
-function SelectedColorsDisplay() {
+
+interface Props {
+  parentHandleColorChange: (colors: string[]) => void;
+}
+
+
+function SelectedColorsDisplay( { parentHandleColorChange }: Props) {
   const defaultColor = "#996699";
   const [colors, setColors] = useState<string[]>([defaultColor, defaultColor, defaultColor]);
 
   function onColorChanged(id: number, color: string) {
-    setColors((prevColors) => {
-      const newColors = [...prevColors];
-      newColors[id] = color;
-      return newColors;
-    });
+    const newColors = [...colors];
+    newColors[id] = color;
+    parentHandleColorChange(newColors);
+    setColors(newColors);
   }
 
   function onDeleteCard(id: number) {
     const newColors = [...colors];
     newColors.splice(id, 1);
+    parentHandleColorChange(newColors);
     setColors(newColors);
   }
 
   function onAddColor() {
-    setColors([defaultColor, ...colors]);
+    const newColors = [defaultColor, ...colors];
+    parentHandleColorChange(newColors);
+    setColors(newColors);
   }
 
   return (

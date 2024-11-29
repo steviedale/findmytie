@@ -11,7 +11,7 @@ function ColorCard({ color = "red", id, onClick, onDeleteClick }: Props) {
   const handleColorChangeEvent = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     onClick(id, event.target.value);
   };
 

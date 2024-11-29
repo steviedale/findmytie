@@ -8,7 +8,7 @@ function QueryPage() {
 
   const handleColorChange = (newColors: string[]) => {
     setColors(newColors);
-    console.log(newColors);
+    // console.log(newColors);
   };
 
   const handleClick = async () => {
@@ -42,7 +42,7 @@ function QueryPage() {
   return (
     <div>
       <ReferenceImageArea />
-      <SelectedColorsDisplay />
+      <SelectedColorsDisplay parentHandleColorChange={handleColorChange}/>
       <button className="btn btn-primary" onClick={handleClick} > 
         Search
       </button>

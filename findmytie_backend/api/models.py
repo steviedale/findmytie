@@ -18,6 +18,7 @@ class SearchQuery(models.Model):
     colors = models.CharField(max_length=1000, default='')
     host = models.CharField(max_length=50, default='')
     created_at = models.DateTimeField(auto_now_add=True)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.id}: {self.colors}"
@@ -31,3 +32,11 @@ class Listing(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.title}"
+
+class QueryMatch(models.Model):
+    search_query = models.ForeignKey(SearchQuery, on_delete=models.CASCADE)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.search_query.code} - {self.listing.title}"

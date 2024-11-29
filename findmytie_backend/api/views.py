@@ -27,6 +27,10 @@ class CreateSearchQueryView(APIView):
         host = self.request.session.session_key
         search_query = SearchQuery.objects.create(host=host, colors=str(data['colors']))
 
+        print(search_query)
+
+        # TODO: kick off a celery task to process the search query
+
         return Response(SearchQuerySerializer(search_query).data, status=status.HTTP_201_CREATED)
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
