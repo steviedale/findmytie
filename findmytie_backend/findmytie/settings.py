@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'channels',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 ]
+
+ASGI_APPLICATION = 'findmytie.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

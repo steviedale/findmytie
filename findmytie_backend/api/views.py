@@ -67,12 +67,15 @@ class GetListingsView(APIView):
         listings = Listing.objects.all()
         print(f"listings: {listings}")
 
+        # this is just dummy logic for now
+        i = max(0, min(int(search_query_id), len(listings)) - 1)
+
         data = [{
-            'id': listings[0].id,
-            'title': listings[0].title,
-            'price': listings[0].price,
-            'url': listings[0].url,
-            'image_url': listings[0].image.url,
-            'created_at': listings[0].created_at,
+            'id': listings[i].id,
+            'title': listings[i].title,
+            'price': listings[i].price,
+            'url': listings[i].url,
+            'image_url': listings[i].image.url,
+            'created_at': listings[i].created_at,
         }]
         return Response(data, status=status.HTTP_200_OK)

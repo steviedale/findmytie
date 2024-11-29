@@ -1,3 +1,5 @@
 django
 djangorestframework
 django-cors-headers
+channels
+# python -m pip install -U 'channels[daphne]'
