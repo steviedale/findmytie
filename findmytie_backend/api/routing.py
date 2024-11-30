@@ -1,9 +1,9 @@
 # api/routing.py
 from django.urls import re_path
 
-from .consumer import MyConsumer
+from .consumers import GetListingsConsumer
 
-path = re_path(r"ws/api/consumer", MyConsumer.as_asgi())
+path = re_path(r"ws/api/consumer", GetListingsConsumer.as_asgi())
 print(f"PATH: {path}")
 websocket_urlpatterns = [
     path

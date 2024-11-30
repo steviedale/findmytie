@@ -2,8 +2,18 @@ import { useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from "react-use-websocket"
 
 
+interface Listing {
+  listing_id: string;
+  title: string;
+  price: number;
+  url: string;
+  image_url: string;
+  created_at: string;
+}
+
+
 function MyComponent() {
-  const [ messages, setMessages ] = useState<string[]>([])
+  const [ listings, setListings] = useState<Listing[]>([])
 
   const WS_URL = "ws://localhost:8000/ws/api/consumer"    
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
@@ -18,12 +28,8 @@ function MyComponent() {
   useEffect(() => {
     console.log("Connection state changed")
     if (readyState === ReadyState.OPEN) {
-      sendJsonMessage({
-        event: "subscribe",
-        data: {
-          channel: "general-chatroom",
-        },
-      })
+      console.log("Sending message");
+      sendJsonMessage({'search_query_id': 2});
     }
   }, [readyState])
 
@@ -31,17 +37,33 @@ function MyComponent() {
   useEffect(() => {
     console.log(lastJsonMessage)
     if (lastJsonMessage) {
-      setMessages(lastJsonMessage);
+      console.log("New message received")
+      console.log(lastJsonMessage)
+      if (lastJsonMessage.hasOwnProperty('listings')) {
+        setListingsReceived(true);
+        setListings(lastJsonMessage.listings.map((listing: any) => {
+          const listingObj: Listing = {
+            listing_id: listing.listing_id,
+            title: listing.title,
+            price: Number(listing.price),
+            url: listing.url,
+            image_url: listing.image_url,
+            created_at: listing.created_at,
+          }
+          return listingObj;
+        }));
+      }
     }
   }, [lastJsonMessage])
 
     // ... Rest of your component logic
     return (
       <div>
-        <p>Websocket test</p>
         <ul>
-          {messages.map((message, idx) => (
-            <li key={idx}>{message}</li>
+          {listings.map((listing, idx) => (
+            <li key={idx}>
+              {listing.title} - {listing.price} - {listing.created_at}
+            </li>
           ))}
         </ul>
       </div>

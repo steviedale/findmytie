@@ -1,5 +1,6 @@
 django
 djangorestframework
 django-cors-headers
+celery
 channels
 # python -m pip install -U 'channels[daphne]'
