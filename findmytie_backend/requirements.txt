@@ -1,6 +1,9 @@
-django
-djangorestframework
-django-cors-headers
 celery
 channels
+django
+djangorestframework
+django-celery-results
+django-cors-headers
+pandas
+redis
 # python -m pip install -U 'channels[daphne]'

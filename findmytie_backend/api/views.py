@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 import json
+from .tasks import process_search_query
 
 
 class ListSearchQueryView(generics.ListAPIView):
@@ -30,6 +31,10 @@ class CreateSearchQueryView(APIView):
         print(search_query)
 
         # TODO: kick off a celery task to process the search query
+        # process_search_query.delay(search_query.id)
+        print('starting celery task')
+        ret = process_search_query.delay(search_query.id)
+        print(f"celery task id: {ret.id}")
 
         return Response(SearchQuerySerializer(search_query).data, status=status.HTTP_201_CREATED)
         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -14,6 +14,7 @@ interface Listing {
 
 function MyComponent() {
   const [ listings, setListings] = useState<Listing[]>([])
+  const [ listingsReceived, setListingsReceived] = useState(false);
 
   const WS_URL = "ws://localhost:8000/ws/api/consumer"    
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
@@ -25,6 +26,7 @@ function MyComponent() {
   )
 
   // Run when the connection state (readyState) changes
+  // this is run once when the component is mounted
   useEffect(() => {
     console.log("Connection state changed")
     if (readyState === ReadyState.OPEN) {
@@ -32,6 +34,8 @@ function MyComponent() {
       sendJsonMessage({'search_query_id': 2});
     }
   }, [readyState])
+
+  // TODO: send out a message to the websocket server to get the listings on an interval, stop when listingsReceived is true
 
   // Run when a new WebSocket message is received (lastJsonMessage)
   useEffect(() => {

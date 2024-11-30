@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'corsheaders',
+    'celery',
 ]
 
 ASGI_APPLICATION = 'findmytie.asgi.application'
@@ -140,3 +141,10 @@ CORS_ALLOWED_ORIGINS = [
 
 # TODO: only for development, remove for production
 # CORS_ALLOW_ALL_ORIGINS = True
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'django-db' 
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+ 
+USE_TZ = True
+TIME_ZONE = 'MST' 
