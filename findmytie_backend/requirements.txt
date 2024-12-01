@@ -1,9 +1,11 @@
 celery
 channels
+daphne
 django
 djangorestframework
 django-celery-results
 django-cors-headers
 pandas
+Pillow
 redis
 # python -m pip install -U 'channels[daphne]'
