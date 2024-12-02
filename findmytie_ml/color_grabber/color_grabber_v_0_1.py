@@ -14,7 +14,16 @@ from semantic_segmentation.semantic_segmentation_v_0 import get_segmentation_mas
 # %%
 SIZE = 256
 
-def grab_colors(img, n_colors=8, weights=(5, 100, 100, 1, 1), resize=False, blur=True, remove_background=True):
+def grab_colors(
+    img,  # opencv image
+    n_colors=8, 
+    weights=(5, 100, 100, 1, 1), 
+    resize=False,
+    blur=True, 
+    remove_background=True, 
+    output_format='rgb',
+    
+):
     if resize:
         img = cv2.resize(img, (SIZE, SIZE))
 
@@ -56,4 +65,12 @@ def grab_colors(img, n_colors=8, weights=(5, 100, 100, 1, 1), resize=False, blur
     closest_points = np.array(closest_points) / np.array(weights)
     centroids = centroids / np.array(weights)
     inertia = clt.inertia_
+
+    # convert output color
+    if output_format == 'rgb':
+        centroids = color.lab2rgb(centroids.reshape(1, -1, 3)).reshape(-1, 3)
+        closest_points = color.lab2rgb(closest_points.reshape(-1, 1, 3)).reshape(-1, 3)
+    else:
+        assert(output_format == 'lab')
+
     return centroids, cluster_weights, closest_points, inertia

@@ -9,7 +9,7 @@ from skimage import color
 # %%
 import sys
 sys.path.append('..')
-from semantic_segmentation.semantic_segmentation_v0 import get_segmentation_mask
+from semantic_segmentation.semantic_segmentation_v_0 import get_segmentation_mask
 
 # %%
 SIZE = 256

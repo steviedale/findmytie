@@ -8,4 +8,11 @@ django-cors-headers
 pandas
 Pillow
 redis
-# python -m pip install -U 'channels[daphne]'
+tqdm
+
+# findmytie_ml requirements
+matplotlib
+numpy
+scikit-learn
+scikit-image
+opencv-python

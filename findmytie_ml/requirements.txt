@@ -1,14 +1,15 @@
-requests 
-beautifulsoup4 
-lxml 
+# requests 
+# beautifulsoup4 
+# lxml 
 pandas
 ipykernel
 opencv-python
 matplotlib
 scikit-learn
+tqdm
 scikit-image
-colorthief
-rembg
-Pylette
-torch
-torchvision
+# colorthief
+# rembg
+# Pylette
+# torch
+# torchvision

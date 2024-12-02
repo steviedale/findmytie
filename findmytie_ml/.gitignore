@@ -1,6 +1,4 @@
 venv/
 __pycache__/
 .DS_Store
-dataset_v0
-dataset_v0.1
-
+datasets
