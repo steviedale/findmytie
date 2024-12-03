@@ -10,6 +10,7 @@ sys.path.append('../findmytie_ml')
 from scripts.get_color_tree import get_color_tree
 
 
+print('Loading data...')
 df = pd.read_csv('/Users/sdale/repos/findmytie/findmytie_backend/api/data/manual_listings_with_colors.csv')
 tree_data = get_color_tree(df)
 listing_tree = tree_data['tree'] 
@@ -17,9 +18,10 @@ listing_ids = tree_data['listing_ids']
 listing_color_indices = tree_data['listing_color_indices']
 color_pcts = tree_data['color_pcts']
 query_weight = tree_data['query_weight']
+print('Data loaded.')
 
 # simulate loading in listings
-time.sleep(10)
+# time.sleep(10)
 
 # TODO: test this
 @shared_task
@@ -66,3 +68,6 @@ def process_search_query(search_query_id):
             listing_color=listing_color,
         )
         query_match.save()
+    
+    search_query.completed = True
+    search_query.save()
