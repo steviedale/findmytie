@@ -61,6 +61,14 @@ class Listing(models.Model):
 class QueryMatch(models.Model):
     search_query = models.ForeignKey(SearchQuery, on_delete=models.CASCADE)
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+
+    query_color_index = models.IntegerField()
+    listing_color_index = models.IntegerField()
+
+    query_color = models.CharField(max_length=200)
+    listing_color = models.CharField(max_length=200)
+
+    distance = models.FloatField()
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):

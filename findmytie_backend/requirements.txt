@@ -1,3 +1,12 @@
+# findmytie_ml requirements
+matplotlib
+numpy
+scikit-learn
+scikit-image
+opencv-python
+ipykernel
+
+# findmytie_backend
 celery
 channels
 daphne
@@ -10,9 +19,3 @@ Pillow
 redis
 tqdm
 
-# findmytie_ml requirements
-matplotlib
-numpy
-scikit-learn
-scikit-image
-opencv-python
